@@ -14,7 +14,10 @@ interface VideoDao {
     suspend fun delete(video: VideoRow)
 
     @Query("SELECT * FROM video")
-    fun getAll(): Flow<List<VideoRow>>
+    fun observeAll(): Flow<List<VideoRow>>
+
+    @Query("SELECT * FROM video")
+    suspend fun getAll(): List<VideoRow>
 
     @Insert
     suspend fun insert(video: VideoRow)

@@ -8,10 +8,11 @@ import com.example.gemspile.storage_interface.VideoRepository
 import com.example.gemspile.validated_model.Video
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class VideoRepositoryImpl(
+class VideoRepositoryImpl @Inject constructor(
     private val videoDao: VideoDao
-): VideoRepository {
+) : VideoRepository {
     override suspend fun getByUrl(url: String): Video? {
         val videoRow = videoDao.getByUrl(url = url)
         return videoRow?.toVideo()
@@ -22,10 +23,13 @@ class VideoRepositoryImpl(
         videoDao.delete(video = videoRow)
     }
 
-    override fun getAll(): Flow<List<Video>> =
-        videoDao.getAll().map {
+    override fun observeAll(): Flow<List<Video>> =
+        videoDao.observeAll().map {
             it.toVideoList()
         }
+
+    override suspend fun getAll(): List<Video> =
+        videoDao.getAll().toVideoList()
 
     override suspend fun add(video: Video) {
         val videoRow = video.toVideoRow()

@@ -6,7 +6,8 @@ import kotlinx.coroutines.flow.Flow
 interface VideoRepository {
     suspend fun getByUrl(url: String) : Video?
     suspend fun delete(video: Video)
-    fun getAll() : Flow<List<Video>>
+    fun observeAll() : Flow<List<Video>>
+    suspend fun getAll(): List<Video>
     suspend fun add(video: Video)
     suspend fun update(video: Video)
 }

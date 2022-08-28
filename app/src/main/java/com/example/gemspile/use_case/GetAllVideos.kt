@@ -6,5 +6,5 @@ import javax.inject.Inject
 class GetAllVideos @Inject constructor(
     private val videoRepository: VideoRepository
 ) {
-   operator fun invoke() = videoRepository.getAll()
+   suspend operator fun invoke() = videoRepository.getAll()
 }
