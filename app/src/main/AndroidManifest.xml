@@ -4,6 +4,7 @@
     package="com.example.gemspile">
 
     <application
+        android:name=".GemsPileApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
