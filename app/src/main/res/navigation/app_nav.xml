@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/videoListFragment">
+
+    <fragment
+        android:id="@+id/videoListFragment"
+        android:name="com.example.gemspile.ui.video_list.VideoListFragment"
+        android:label="VideoListFragment" >
+        <action
+            android:id="@+id/action_videoList_to_addVideo"
+            app:destination="@id/addVideoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addVideoFragment"
+        android:name="com.example.gemspile.ui.add_video.AddVideoFragment"
+        android:label="AddVideoFragment" >
+        <action
+            android:id="@+id/action_addVideo_to_videoList"
+            app:destination="@id/videoListFragment" />
+    </fragment>
+</navigation>

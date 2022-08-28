@@ -40,6 +40,7 @@ android {
 dependencies {
     def room_version = "2.4.3"
     def fragment_version = "1.5.2"
+    def nav_version = "2.5.1"
 
     // Kotlin extensions for 'core' artifact
     implementation 'androidx.core:core-ktx:1.8.0'
@@ -65,4 +66,8 @@ dependencies {
 
     // Material Design 3
     implementation "com.google.android.material:material:1.7.0-beta01"
+
+    // Jetpack Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }
