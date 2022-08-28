@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Gems Pile</string>
+    <string name="add_video_fab_desc">Saves video</string>
 </resources>
