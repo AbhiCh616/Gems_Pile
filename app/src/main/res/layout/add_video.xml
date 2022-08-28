@@ -14,9 +14,13 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorSurface"
+            android:elevation="4dp"
             app:menu="@menu/save_top"
             app:navigationIcon="@drawable/ic_close_24"
-            app:title="@string/add_video" />
+            app:title="@string/add_video"
+            app:navigationIconTint="?attr/colorOnSurfaceVariant"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 
