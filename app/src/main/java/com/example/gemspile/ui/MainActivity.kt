@@ -6,7 +6,9 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.example.gemspile.R
 import com.example.gemspile.ui.video_list.VideoListFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.main_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
