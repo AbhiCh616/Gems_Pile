@@ -2,15 +2,14 @@ package com.example.gemspile.ui.video_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gemspile.databinding.VideoItemBinding
-import com.example.gemspile.validated_model.Video
-import com.google.android.material.card.MaterialCardView
 
 class VideosAdapter(
-    private val videoSet: List<Video>,
-    private val onCardLongClickListener: (MaterialCardView, Video) -> Unit,
-    private val onCardClickListener: (MaterialCardView, Video) -> Unit
+    private val videoSet: MutableList<VideoItem>,
+    private val onCardLongClickListener: (VideoItem) -> Unit,
+    private val onCardClickListener: (VideoItem) -> Unit
 ) : RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
     class ViewHolder(val binding: VideoItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -23,14 +22,23 @@ class VideosAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
             textView.text = videoSet[position].url
+            videoCard.isChecked = videoSet[position].isSelected
             videoCard.setOnLongClickListener {
-                onCardLongClickListener(videoCard, videoSet[position])
+                onCardLongClickListener(videoSet[position])
                 true
             }
             videoCard.setOnClickListener {
-                onCardClickListener(videoCard, videoSet[position])
+                onCardClickListener(videoSet[position])
             }
         }
+    }
+
+    fun updateData(updatedVideoList: List<VideoItem>) {
+        val diffCallback = VideoItemDiffCallback(videoSet, updatedVideoList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        videoSet.clear()
+        videoSet.addAll(updatedVideoList)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun getItemCount() = videoSet.size
