@@ -59,4 +59,7 @@ class VideoListViewModel @Inject constructor(
     fun areVideosSelected(): Boolean =
         _selectedVideos.value.isNotEmpty()
 
+    fun deselectAllVideos() {
+        _selectedVideos.value = listOf()
+    }
 }
