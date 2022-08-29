@@ -9,7 +9,8 @@ import com.google.android.material.card.MaterialCardView
 
 class VideosAdapter(
     private val videoSet: List<Video>,
-    private val onCardLongClickListener: (MaterialCardView, Video) -> Unit
+    private val onCardLongClickListener: (MaterialCardView, Video) -> Unit,
+    private val onCardClickListener: (MaterialCardView, Video) -> Unit
 ) : RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
     class ViewHolder(val binding: VideoItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -25,6 +26,9 @@ class VideosAdapter(
             videoCard.setOnLongClickListener {
                 onCardLongClickListener(videoCard, videoSet[position])
                 true
+            }
+            videoCard.setOnClickListener {
+                onCardClickListener(videoCard, videoSet[position])
             }
         }
     }

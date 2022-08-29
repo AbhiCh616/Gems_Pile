@@ -41,7 +41,8 @@ class VideoListFragment : Fragment() {
                 val videoSet = viewModel.videos ?: listOf()
                 it.adapter = VideosAdapter(
                     videoSet = videoSet,
-                    onCardLongClickListener = ::onCardLongClickListener
+                    onCardLongClickListener = ::onCardLongClickListener,
+                    onCardClickListener = ::onCardClickListener
                 )
             }
         }
@@ -51,11 +52,28 @@ class VideoListFragment : Fragment() {
 
     private fun onCardLongClickListener(card: MaterialCardView, video: Video) {
         if (card.isChecked) {
-            viewModel.deselectVideo(video = video)
+            deselectVideo(card = card, video = video)
         } else {
-            viewModel.selectVideo(video = video)
+            selectVideo(card = card, video = video)
         }
-        card.isChecked = !card.isChecked
+    }
+
+    private fun selectVideo(card: MaterialCardView, video: Video) {
+        card.isChecked = true
+        viewModel.selectVideo(video = video)
+    }
+
+    private fun deselectVideo(card: MaterialCardView, video: Video) {
+        card.isChecked = false
+        viewModel.deselectVideo(video = video)
+    }
+
+    private fun onCardClickListener(card: MaterialCardView, video: Video) {
+        if (card.isChecked) {
+            deselectVideo(card = card, video = video)
+        } else if (viewModel.isAnyVideoSelected()) {
+            selectVideo(card = card, video = video)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
