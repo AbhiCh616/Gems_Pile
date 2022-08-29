@@ -10,6 +10,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gemspile.R
 import com.example.gemspile.databinding.VideoListBinding
+import com.example.gemspile.validated_model.Video
+import com.google.android.material.card.MaterialCardView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,11 +39,23 @@ class VideoListFragment : Fragment() {
             binding.rvVideos.let {
                 it.layoutManager = LinearLayoutManager(context)
                 val videoSet = viewModel.videos ?: listOf()
-                it.adapter = VideosAdapter(videoSet = videoSet)
+                it.adapter = VideosAdapter(
+                    videoSet = videoSet,
+                    onCardLongClickListener = ::onCardLongClickListener
+                )
             }
         }
 
         return binding.root
+    }
+
+    private fun onCardLongClickListener(card: MaterialCardView, video: Video) {
+        if (card.isChecked) {
+            viewModel.deselectVideo(video = video)
+        } else {
+            viewModel.selectVideo(video = video)
+        }
+        card.isChecked = !card.isChecked
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -15,4 +15,18 @@ class VideoListViewModel @Inject constructor(
     suspend fun fetchVideos() {
         videos = getAllVideos().toMutableList()
     }
+
+    private var selectedVideos = mutableListOf<Video>()
+
+    fun selectVideo(video: Video) {
+        selectedVideos.add(video)
+    }
+
+    fun deselectVideo(video: Video) {
+        selectedVideos.remove(video)
+    }
+
+    fun isAnyVideoSelected(): Boolean {
+        return selectedVideos.isNotEmpty()
+    }
 }

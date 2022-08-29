@@ -5,9 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gemspile.databinding.VideoItemBinding
 import com.example.gemspile.validated_model.Video
+import com.google.android.material.card.MaterialCardView
 
 class VideosAdapter(
-    private val videoSet: List<Video>
+    private val videoSet: List<Video>,
+    private val onCardLongClickListener: (MaterialCardView, Video) -> Unit
 ) : RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
     class ViewHolder(val binding: VideoItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -20,6 +22,10 @@ class VideosAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
             textView.text = videoSet[position].url
+            videoCard.setOnLongClickListener {
+                onCardLongClickListener(videoCard, videoSet[position])
+                true
+            }
         }
     }
 
