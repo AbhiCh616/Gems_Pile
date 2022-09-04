@@ -79,8 +79,10 @@ class VideoListFragment : Fragment() {
                 viewModel.observeAreVideosSelected().collect { areVideosSelected ->
                     if (areVideosSelected) {
                         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                        binding.addVideoButton.visibility = View.GONE
                     } else {
                         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+                        binding.addVideoButton.visibility = View.VISIBLE
                     }
                 }
             }

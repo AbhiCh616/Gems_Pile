@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:background="?attr/colorSurface"
+    android:theme="?attr/bottomSheetDialogTheme">
 
     <com.google.android.material.button.MaterialButton
         style="@style/Widget.Material3.Button.TextButton.Icon"
