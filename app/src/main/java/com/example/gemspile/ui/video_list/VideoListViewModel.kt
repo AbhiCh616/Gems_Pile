@@ -3,9 +3,7 @@ package com.example.gemspile.ui.video_list
 import androidx.lifecycle.ViewModel
 import com.example.gemspile.use_case.ObserveVideos
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -58,6 +56,11 @@ class VideoListViewModel @Inject constructor(
 
     fun areVideosSelected(): Boolean =
         _selectedVideos.value.isNotEmpty()
+
+    fun observeAreVideosSelected(): Flow<Boolean> =
+        _selectedVideos.map {
+            it.isNotEmpty()
+        }
 
     fun deselectAllVideos() {
         _selectedVideos.value = listOf()

@@ -14,6 +14,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gemspile.R
 import com.example.gemspile.databinding.VideoListBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -61,10 +62,26 @@ class VideoListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bottomSheetBehavior =
+            BottomSheetBehavior.from(binding.bottomSheetSpace.videoActionBottomSheet)
+        bottomSheetBehavior.isHideable = true
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.videoItems.collect { videoList ->
                     adapter.updateData(updatedVideoList = videoList)
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.observeAreVideosSelected().collect { areVideosSelected ->
+                    if (areVideosSelected) {
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                    } else {
+                        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+                    }
                 }
             }
         }

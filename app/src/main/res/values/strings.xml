@@ -6,4 +6,5 @@
     <string name="save">Save</string>
     <string name="add_video_btn_desc">Saves video to library</string>
     <string name="video_thumbnail">Video thumbnail</string>
+    <string name="delete">Delete</string>
 </resources>
