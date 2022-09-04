@@ -91,5 +91,9 @@ class VideoListFragment : Fragment() {
         binding.addVideoButton.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.action_videoList_to_addVideo)
         }
+
+        binding.bottomSheetSpace.deleteVideoButton.setOnClickListener {
+            viewModel.deleteSelectedVideos()
+        }
     }
 }

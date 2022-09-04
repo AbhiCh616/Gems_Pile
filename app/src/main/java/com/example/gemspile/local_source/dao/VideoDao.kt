@@ -10,6 +10,9 @@ interface VideoDao {
     @Query("SELECT * FROM video WHERE url = :url")
     suspend fun getByUrl(url: String): VideoRow?
 
+    @Query("DELETE FROM video WHERE url = :url")
+    suspend fun deleteByUrl(url: String)
+
     @Delete
     suspend fun delete(video: VideoRow)
 

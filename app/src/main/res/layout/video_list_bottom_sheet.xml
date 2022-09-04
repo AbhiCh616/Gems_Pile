@@ -4,12 +4,13 @@
     android:id="@+id/video_action_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     android:background="?attr/colorSurface"
-    android:theme="?attr/bottomSheetDialogTheme">
+    android:orientation="horizontal"
+    android:theme="?attr/bottomSheetDialogTheme"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/delete_video_button"
         style="@style/Widget.Material3.Button.TextButton.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -4,9 +4,10 @@ import com.example.gemspile.validated_model.Video
 import kotlinx.coroutines.flow.Flow
 
 interface VideoRepository {
-    suspend fun getByUrl(url: String) : Video?
+    suspend fun getByUrl(url: String): Video?
+    suspend fun deleteByUrl(url: String)
     suspend fun delete(video: Video)
-    fun observeAll() : Flow<List<Video>>
+    fun observeAll(): Flow<List<Video>>
     suspend fun getAll(): List<Video>
     suspend fun add(video: Video)
     suspend fun update(video: Video)

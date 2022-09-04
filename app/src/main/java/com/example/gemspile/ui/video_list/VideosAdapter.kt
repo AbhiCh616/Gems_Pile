@@ -20,15 +20,16 @@ class VideosAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val video = videoSet[position]
         with(holder.binding) {
-            textView.text = videoSet[position].url
-            videoCard.isChecked = videoSet[position].isSelected
+            textView.text = video.url
+            videoCard.isChecked = video.isSelected
             videoCard.setOnLongClickListener {
-                onCardLongClickListener(videoSet[position])
+                onCardLongClickListener(video)
                 true
             }
             videoCard.setOnClickListener {
-                onCardClickListener(videoSet[position])
+                onCardClickListener(video)
             }
         }
     }

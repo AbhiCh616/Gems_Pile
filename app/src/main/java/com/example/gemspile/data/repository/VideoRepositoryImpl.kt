@@ -18,6 +18,10 @@ class VideoRepositoryImpl @Inject constructor(
         return videoRow?.toVideo()
     }
 
+    override suspend fun deleteByUrl(url: String) {
+        videoDao.deleteByUrl(url = url)
+    }
+
     override suspend fun delete(video: Video) {
         val videoRow = video.toVideoRow()
         videoDao.delete(video = videoRow)
